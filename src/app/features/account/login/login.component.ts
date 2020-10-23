@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   loginClick() {
     if (!this.user.email || !this.user.password) {
-      this.messageService.add({ severity: 'error', detail: 'Enter all fields' });
+      this.messageService.add({ severity: 'error', detail: 'Enter all fields', summary: "Error" });
       return;
     }
     this.login();
