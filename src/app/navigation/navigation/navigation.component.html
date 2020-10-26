@@ -1,5 +1,5 @@
 <nav class="navigation-wrapper">
-    
+
     <div class="icon-wrapper">
         <span class="material-icons users">
             group
@@ -22,9 +22,8 @@
     </div>
 
     <div class="login">
-        <span> <b> Logged in as:</b> <span class="user-color"> {{user}} </span></span>
-        <button pButton pRipple type="button" label="Logout"
-            class="p-button-raised p-button-danger p-button-sm"></button>
+        <span> <b> Logged in as:</b> <span class="user-color"> {{ email }} </span></span>
+        <button pButton pRipple type="button" label="Logout" class="p-button-raised p-button-danger p-button-sm" (click)="logout()"></button>
     </div>
 
 </nav>

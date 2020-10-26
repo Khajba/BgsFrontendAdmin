@@ -1,4 +1,4 @@
-export interface ResponseMessage<TData> {
+export interface BgsResponseMessage<TData> {
     isSuccess: boolean;
     data: TData;
     errorMessage: string;

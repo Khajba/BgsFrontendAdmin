@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/models/user';
-import { AccountService } from '../../account.service';
+import { AuthorizationService } from 'src/app/core/authorization/authorization.service';
+import { AuthenticateUserModel } from 'src/app/models/authenticate-user.model';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,10 @@ import { AccountService } from '../../account.service';
 })
 export class LoginComponent implements OnInit {
 
-  user: User = {};
+  user: AuthenticateUserModel = {};
 
   constructor(
-    private readonly accountService: AccountService,
+    private readonly authorizationService: AuthorizationService,
     private readonly messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   }
   private login() {
-    this.accountService.login(this.user).subscribe(
+    this.authorizationService.login(this.user).subscribe(
       response => {
 
       }

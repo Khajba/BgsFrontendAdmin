@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
+import { AuthorizationService } from 'src/app/core/authorization/authorization.service';
+import { AuthenticateUserModel } from 'src/app/models/authenticate-user.model';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
 
-  user ="kurtishvili@gmail.com";
-
-  constructor() { }
-
-  ngOnInit(): void {
+  get email() {
+    return this.authorizationService.authUserData.email;
   }
 
-  
+  constructor(private readonly authorizationService: AuthorizationService) { }
 
+  logout() {
+    this.authorizationService.logout();
+
+    window.location.reload();
+  }
 }

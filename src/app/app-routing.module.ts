@@ -1,10 +1,23 @@
 import { NgModule } from '@angular/core';
-import { async } from '@angular/core/testing';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthorizationGuard, LoginAuthGuard } from './core/authorization/auth.guard';
 
 const routes: Routes = [
-  {path: 'account', loadChildren: async () => await (await import('./features/account/account.module')).AccountModule},
-  {path: 'products', loadChildren: async() => await (await import ('./features/products/products.module')).ProductsModule }
+  {
+    path: '',
+    redirectTo: 'products',
+    pathMatch: 'full'
+  },
+  {
+    path: 'account',
+    loadChildren: async () => (await import('./features/account/account.module')).AccountModule,
+    canActivate: [LoginAuthGuard]
+  },
+  {
+    path: 'products',
+    loadChildren: async () => (await import('./features/products/products.module')).ProductsModule,
+    canActivate: [AuthorizationGuard]
+  }
 ];
 
 @NgModule({

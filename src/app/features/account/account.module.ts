@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { AccountService } from '../account.service';
+import { AccountService } from './account.service';
 
 
 

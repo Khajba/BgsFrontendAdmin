@@ -1,4 +1,5 @@
-<app-navigation></app-navigation>
+<app-navigation *ngIf="isAuthenticated"></app-navigation>
+
 <router-outlet></router-outlet>
 
 <p-toast></p-toast>
