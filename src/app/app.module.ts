@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { AccountModule } from './features/account/account.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavigationComponent } from './navigation/navigation/navigation.component';
+import { ProductsModule } from './features/products/products.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     AccountModule,
     SharedModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ProductsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

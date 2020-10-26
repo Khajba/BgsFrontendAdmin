@@ -1,0 +1,30 @@
+<nav class="navigation-wrapper">
+    
+    <div class="icon-wrapper">
+        <span class="material-icons users">
+            group
+        </span>
+        <div>users</div>
+    </div>
+
+    <div class="icon-wrapper">
+        <span class="material-icons transactions">
+            payment
+        </span>
+        <div>transactions</div>
+    </div>
+
+    <div class="icon-wrapper products" routerLink="/products" routerLinkActive="active">
+        <span class="material-icons products">
+            videogame_asset
+        </span>
+        <div>products</div>
+    </div>
+
+    <div class="login">
+        <span> <b> Logged in as:</b> <span class="user-color"> {{user}} </span></span>
+        <button pButton pRipple type="button" label="Logout"
+            class="p-button-raised p-button-danger p-button-sm"></button>
+    </div>
+
+</nav>
