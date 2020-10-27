@@ -1,1 +1,55 @@
-<p>products works!</p>
+<form>
+
+    <div class="filter">
+
+        <div class="filter-wrapper">
+            <p-dropdown [options]="categories" [(ngModel)]="selectedCategory" placeholder="Select category"
+                optionLabel="name">
+            </p-dropdown>
+        </div>
+
+        <div class="filter-wrapper">
+            <span class="p-float-label">
+                <input name="name" id="name" type="text" pInputText [(ngModel)]="filter.name">
+                <label for="name">Name</label>
+            </span>
+        </div>
+
+        <div class="filter-wrapper">
+            <span class="p-float-label">
+                <input name="priceFrom" id="priceFrom" type="number" pInputText [(ngModel)]="filter.priceFrom">
+                <label for="priceFrom">Price from</label>
+            </span>
+        </div>
+
+        <div class="filter-wrapper">
+            <span class="p-float-label">
+                <input name="priceTo" id="priceTo" type="number" pInputText [(ngModel)]="filter.priceTo">
+                <label for="priceTo">Price to</label>
+            </span>
+        </div>
+
+        <div class="filter-wrapper">
+            <span class="p-float-label">
+                <input name="stockFrom" id="stockFrom" type="number" pInputText [(ngModel)]="filter.stockFrom">
+                <label for="stockFrom">Stock from</label>
+            </span>
+        </div>
+
+        <div class="filter-wrapper">
+            <span class="p-float-label">
+                <input name="stockTo" id="stockTo" type="number" pInputText [(ngModel)]="filter.stockTo">
+                <label for="stockTo">Stock to</label>
+            </span>
+        </div>
+
+        <div class="btn-wrapper">
+            <button pButton pRipple type="submit" label="Search" icon="pi pi-search"></button>
+        </div>
+        <div class="btn-wrapper">
+            <button pButton pRipple type="button" label="Clear" icon="pi pi-times"></button>
+        </div>
+
+    </div>
+
+</form>

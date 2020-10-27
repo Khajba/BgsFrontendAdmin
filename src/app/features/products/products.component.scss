@@ -1,0 +1,21 @@
+.filter {
+    padding: 10px 5px;
+
+    .filter-wrapper {
+        display: inline-block;
+        margin: 13px 5px;
+        width: 220px;
+        vertical-align: middle;
+
+        .input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    .btn-wrapper {
+        margin: 3px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}

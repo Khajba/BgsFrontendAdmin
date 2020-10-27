@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
     imports: [],
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
         ButtonModule,
         ToastModule,
         MatIconModule,
-        FormsModule
+        FormsModule,
+        DropdownModule
     ],
     providers: [MessageService]
 })
