@@ -3,7 +3,9 @@ export interface AuthUserModel {
     jwt: JsonWebToken;
 }
 
-interface JsonWebToken {
+export interface JsonWebToken {
     accessToken: string;
-    expires: number;
+    expiresInMinutes: number;
+    expiresOnServer: number;
+    expiresOnClient: number;
 }

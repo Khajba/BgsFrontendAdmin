@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http'
 import { MessageService } from 'primeng/api';
 import { map } from 'rxjs/operators';
-import { BgsResponseMessage } from 'src/app/models/bgs-response-message.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,13 +15,13 @@ export class HttpService {
     get<TData>(url: string, queryParams?: {}, showDefaultMessage?: boolean) {
         return this.httpClient
             .get<TData>(`${url}?${this.getQueryParams(queryParams).toString()}`)
-            .pipe(map(response => this.handleResponse(response, showDefaultMessage)))
+            .pipe(map(response => this.handleResponse(response, showDefaultMessage)));
     }
 
     post<TData>(url: string, body: any, showDefaultMessage?: boolean) {
         return this.httpClient
             .post<TData>(url, body)
-            .pipe(map(response => this.handleResponse(response, showDefaultMessage)))
+            .pipe(map(response => this.handleResponse(response, showDefaultMessage)));
     }
 
     private getQueryParams(filter: any): URLSearchParams {
@@ -40,22 +39,5 @@ export class HttpService {
             this.messageService.add({ severity: 'success', detail: 'Operation completed successfully' })
         }
         return response;
-        // if (response.isSuccess == false) {
-        //     if (!!response.errorMessage) {
-        //         this.messageService.add({ severity: 'error', detail: response.errorMessage })
-        //     }
-        //     else {
-        //         if (showDefaultMessage) {
-        //             this.messageService.add({ severity: 'error', detail: 'Something went wrong' })
-        //         }
-        //     }
-        // }
-        // else {
-        //     if (showDefaultMessage) {
-        //         this.messageService.add({ severity: 'success', detail: 'Operation completed successfully' })
-        //     }
-
-        //     return response.data;
-        // }
     }
 }
