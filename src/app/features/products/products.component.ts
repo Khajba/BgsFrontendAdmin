@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpService } from 'src/app/core/http/http.service';
 import { ProductService } from './product.service';
 
 @Component({
@@ -9,9 +8,5 @@ import { ProductService } from './product.service';
 })
 export class ProductsComponent {
 
-  constructor(private readonly productService: ProductService, private readonly http: HttpService) { }
-
-  ngOnInit() {
-    this.http.get<string>('http://localhost:64764/api/account/test').subscribe()
-  }
+  constructor(private readonly productService: ProductService) { }
 }
