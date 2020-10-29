@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
-import { Product } from 'src/app/models/product';
+import { AddStockModel, ProductDetails, ProductListItem } from 'src/app/models/product.models';
 import { ProductCategory } from 'src/app/models/product-category.model';
 import { ProductService } from '../product.service';
 
@@ -12,7 +12,9 @@ import { ProductService } from '../product.service';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  product: Product = {};
+  product: ProductDetails = {};
+
+  addStockModel: AddStockModel = {};
 
   categories: SelectItem[] = [];
 
@@ -20,17 +22,25 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private readonly productService: ProductService,
-    private readonly router: Router) { }
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getProductCategories();
+
+    const productId = +this.activatedRoute.snapshot.paramMap.get('id');
+
+    if (productId > 0) {
+      this.getProductById(productId);
+    }
   }
 
-  clickStock() {
-    this.product = {}
+  addStockClick() {
+    this.addStockModel = {
+      productId: this.product.id
+    };
     this.displayProductDialog = true;
   }
-
 
   saveClick() {
     if (this.product.id) {
@@ -39,7 +49,6 @@ export class ProductDetailsComponent implements OnInit {
     else {
       this.addProduct();
     }
-
   }
 
   addProduct() {
@@ -59,6 +68,15 @@ export class ProductDetailsComponent implements OnInit {
     )
   }
 
+  addStock() {
+    this.productService.addProductStock(this.addStockModel).subscribe(
+      response => {
+        this.getProductStock();
+        this.displayProductDialog = false;
+      }
+    )
+  }
+
   private getProductCategories() {
     this.productService.getProductCategories().subscribe(
       response => {
@@ -68,6 +86,22 @@ export class ProductDetailsComponent implements OnInit {
             label: c.name
           };
         });
+      }
+    )
+  }
+
+  private getProductById(id: number) {
+    this.productService.getProductById(id).subscribe(
+      response => {
+        this.product = response;
+      }
+    )
+  }
+
+  private getProductStock() {
+    this.productService.getProductStock(this.product.id).subscribe(
+      response => {
+        this.product.stock = response;
       }
     )
   }

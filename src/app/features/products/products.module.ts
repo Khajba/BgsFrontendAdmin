@@ -7,7 +7,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
-
 @NgModule({
   declarations: [
     ProductsComponent,

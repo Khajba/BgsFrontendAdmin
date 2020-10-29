@@ -6,8 +6,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
 
-
-
 @NgModule({
   declarations: [LoginComponent],
   imports: [

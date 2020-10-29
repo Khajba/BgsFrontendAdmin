@@ -9,9 +9,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog'
 
 @NgModule({
-    imports: [],
     exports: [
         InputTextModule,
         ButtonModule,
@@ -21,10 +22,12 @@ import { DialogModule } from 'primeng/dialog';
         DropdownModule,
         TableModule,
         InputTextareaModule,
-        DialogModule
+        DialogModule,
+        ConfirmDialogModule
     ],
-    providers: [MessageService]
+    providers: [
+        MessageService,
+        ConfirmationService
+    ]
 })
-export class SharedModule {
-
-}
+export class SharedModule { }

@@ -5,7 +5,7 @@ import { ProductsComponent } from './products.component';
 
 const routes: Routes = [
     { path: '', component: ProductsComponent },
-    {path: ':id', component: ProductDetailsComponent}
+    { path: ':id', component: ProductDetailsComponent }
 ]
 
 @NgModule({
@@ -13,6 +13,4 @@ const routes: Routes = [
     exports: [RouterModule]
 
 })
-export class ProductsRoutingModule {
-
-}
+export class ProductsRoutingModule { }

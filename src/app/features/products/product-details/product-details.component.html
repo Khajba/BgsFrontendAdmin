@@ -5,6 +5,7 @@
     </div>
 
     <div class="inputs">
+
         <div class="input-wrapper">
             <span class="p-float-label">
                 <input name="name" id="name" type="text" pInputText [(ngModel)]="product.name">
@@ -40,12 +41,12 @@
 
     <div class="stock-wrapper">
 
-        <div class="quantity">144</div>
+        <div class="quantity">{{product.stock}}</div>
         <div>In Stock</div>
 
         <div class="stock">
             <button pButton pRipple type="button" label="Add Stock" icon="pi pi-plus" class="p-button-success"
-                (click)="clickStock()"></button>
+                (click)="addStockClick()"></button>
         </div>
     </div>
 
@@ -63,12 +64,14 @@
         <div class="dialog-wrapper">
             <div>
                 <span class="p-float-label">
-                    <input name="quantity" id="quantity" type="number" pInputText [(ngModel)]="product.quantity">
+                    <input name="quantity" id="quantity" type="number" pInputText [(ngModel)]="addStockModel.quantity"
+                        required>
                     <label for="quantity">Quantity</label>
                 </span>
             </div>
             <div class="add-stock-btn">
-                <button pButton pRipple type="button" label="Add" icon="pi pi-plus" class="p-button-success"></button>
+                <button pButton pRipple type="button" label="Add" icon="pi pi-plus" class="p-button-success"
+                    (click)="addStock()" [disabled]="formProduct.invalid"></button>
             </div>
         </div>
 

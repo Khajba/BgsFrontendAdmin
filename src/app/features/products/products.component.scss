@@ -20,6 +20,20 @@
     }
 }
 
-.add-btn{
+.add-btn {
     padding: 0px 7px 0px;
+}
+
+.table-wrapper {
+    .attachment-column,
+    .number-column,
+    .icon-column {
+        width: 120px;
+    }
+
+    .icon-wrapper {
+        button:not(:first-child) {
+            margin-left: 5px;
+        }
+    }
 }

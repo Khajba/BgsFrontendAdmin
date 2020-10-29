@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
 import { AuthorizationService } from 'src/app/core/authorization/authorization.service';
 import { AuthenticateUserModel } from 'src/app/models/authenticate-user.model';
-import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +30,7 @@ export class LoginComponent implements OnInit {
     this.login();
 
   }
+
   private login() {
     this.authorizationService.login(this.user).subscribe(
       response => {
