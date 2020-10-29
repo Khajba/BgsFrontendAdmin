@@ -3,8 +3,8 @@
     <div class="filter">
 
         <div class="filter-wrapper">
-            <p-dropdown [options]="categories" [(ngModel)]="selectedCategory" placeholder="Select category"
-                optionLabel="name">
+            <p-dropdown name="category" [options]="categories" [(ngModel)]="selectedCategory"
+                placeholder="Select category" optionLabel="name">
             </p-dropdown>
         </div>
 
@@ -44,12 +44,50 @@
         </div>
 
         <div class="btn-wrapper">
-            <button pButton pRipple type="submit" label="Search" icon="pi pi-search"></button>
+            <button pButton pRipple type="submit" label="Search" icon="pi pi-search" name="search"></button>
         </div>
         <div class="btn-wrapper">
-            <button pButton pRipple type="button" label="Clear" icon="pi pi-times"></button>
+            <button pButton pRipple type="button" label="Clear" icon="pi pi-times" (click)="clearClick()"
+                name="clear"></button>
         </div>
 
     </div>
 
 </form>
+
+<div class="add-btn">
+    <button pButton pRipple type="button" label="Add" icon="pi pi-plus" class="p-button-success" routerLink="/products/0" ></button>
+</div>
+
+<div class="table-wrapper">
+    <div class="table">
+        <p-table [value]="products">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th></th>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th class="icon-header"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-products>
+                <tr>
+                    <td></td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.stock}}</td>
+                    <td class="icon-wrapper">
+                        <button pButton pRipple icon="pi pi-pencil"
+                            class="p-button-rounded p-button-warning p-mr-2"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+                    </td>
+                </tr>
+
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>

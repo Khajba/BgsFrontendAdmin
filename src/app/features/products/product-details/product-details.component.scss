@@ -1,0 +1,77 @@
+.content-wrapper {
+    margin-top: 10px;
+    display: flex;
+
+    .img-wrapper {
+        border: 1px solid black;
+        width: 220px;
+        height: 220px;
+        margin: 15px;
+
+        img {
+            width: 100%;
+        }
+    }
+    .inputs {
+        margin-top: 15px;
+        width: 250px;
+
+        .input-wrapper {
+            margin-bottom: 20px;
+
+            input {
+                width: 100%;
+            }
+        }
+        .btn-wrapper {
+            button {
+                width: 100%;
+                margin-top: 4px;
+            }
+        }
+    }
+    .text-area-wrapper {
+        flex: 1;
+        margin: 15px 0px 15px 15px;
+        min-width: 150px;
+
+        textarea {
+            height: 100%;
+        }
+    }
+    .stock-wrapper {
+        width: 220px;
+        margin-top: 15px;
+        text-align: center;
+
+        .quantity {
+            color: #689f38;
+            font-size: 69px;
+        }
+        .stock {
+            margin-top: 30px;
+        }
+    }
+}
+.images {
+    margin-left: 15px;
+}
+
+.images-wrapper {
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+
+    img {
+        width: 100%;
+    }
+}
+.dialog-wrapper {
+    
+    .add-stock-btn {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+

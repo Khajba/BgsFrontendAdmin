@@ -1,0 +1,76 @@
+<div class="content-wrapper">
+
+    <div class="img-wrapper">
+        <img src="https://i.pinimg.com/736x/9d/96/6c/9d966c685c2b869217bd75168bac9243.jpg">
+    </div>
+
+    <div class="inputs">
+        <div class="input-wrapper">
+            <span class="p-float-label">
+                <input name="name" id="name" type="text" pInputText [(ngModel)]="product.name">
+                <label for="name">Name</label>
+            </span>
+        </div>
+
+        <div class="input-wrapper">
+            <p-dropdown name="category" [options]="categories" [(ngModel)]="product.categoryId"
+                placeholder="Select category">
+            </p-dropdown>
+        </div>
+
+        <div class="input-wrapper">
+            <span class="p-float-label">
+                <input name="price" id="price" type="number" pInputText [(ngModel)]="product.price">
+                <label for="price">Price</label>
+            </span>
+        </div>
+
+        <div>
+            <div class="btn-wrapper">
+                <button pButton pRipple type="button" label="Save" name="save" (click)="saveClick()"></button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="text-area-wrapper">
+        <textarea pInputTextarea placeholder="Description" [(ngModel)]="product.description"></textarea>
+    </div>
+
+    <div class="stock-wrapper">
+
+        <div class="quantity">144</div>
+        <div>In Stock</div>
+
+        <div class="stock">
+            <button pButton pRipple type="button" label="Add Stock" icon="pi pi-plus" class="p-button-success"
+                (click)="clickStock()"></button>
+        </div>
+    </div>
+
+</div>
+
+<div class="images">Images</div>
+<div class="images-wrapper">
+    <img src="https://i.pinimg.com/736x/9d/96/6c/9d966c685c2b869217bd75168bac9243.jpg">
+</div>
+
+
+<p-dialog header="Add Stock" [(visible)]="displayProductDialog" [style]="{width: '400px'}" [modal]="true">
+
+    <form #formProduct="ngForm">
+        <div class="dialog-wrapper">
+            <div>
+                <span class="p-float-label">
+                    <input name="quantity" id="quantity" type="number" pInputText [(ngModel)]="product.quantity">
+                    <label for="quantity">Quantity</label>
+                </span>
+            </div>
+            <div class="add-stock-btn">
+                <button pButton pRipple type="button" label="Add" icon="pi pi-plus" class="p-button-success"></button>
+            </div>
+        </div>
+
+    </form>
+</p-dialog>

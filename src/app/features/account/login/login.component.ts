@@ -12,7 +12,10 @@ import { AccountService } from '../account.service';
 })
 export class LoginComponent implements OnInit {
 
-  user: AuthenticateUserModel = {};
+  user: AuthenticateUserModel = {
+    email: 'admin@uth.com',
+    password: 'qwe123'
+  };
 
   constructor(
     private readonly authorizationService: AuthorizationService,

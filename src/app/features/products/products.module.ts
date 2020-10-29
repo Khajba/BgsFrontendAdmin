@@ -5,11 +5,13 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductService } from './product.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
   declarations: [
-    ProductsComponent
+    ProductsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
