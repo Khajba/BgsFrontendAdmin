@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getProductCategories();
+    this.getProdcuts();
   }
 
   clearClick() {
