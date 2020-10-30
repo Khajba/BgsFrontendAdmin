@@ -37,6 +37,7 @@
 
         textarea {
             height: 100%;
+            resize: none;
         }
     }
     .stock-wrapper {
@@ -53,23 +54,40 @@
         }
     }
 }
-.images {
-    margin-left: 15px;
-}
 
-.images-wrapper {
-    border: 1px solid black;
-    width: 150px;
-    height: 150px;
-    margin: 15px;
-
-    img {
-        width: 100%;
-    }
-}
 .dialog-wrapper {
     .add-stock-btn {
         text-align: center;
         margin-top: 20px;
+    }
+}
+
+.images-wrapper {
+    height: calc(100vh - 325px);
+    box-shadow: 0 3px 10px #bfbfbf;
+    padding: 10px;
+    position: relative;
+
+    .images-wrapper-inner {
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+    }
+
+    .image-wrapper {
+        border: 1px solid black;
+        margin-right: 15px;
+        display: inline-block;
+        height: 170px;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .upload-btn {
+        position: absolute;
+        right: 20px;
+        bottom: 15px;
     }
 }

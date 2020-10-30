@@ -52,11 +52,16 @@
 
 </div>
 
-<div class="images">Images</div>
 <div class="images-wrapper">
-    <img src="https://i.pinimg.com/736x/9d/96/6c/9d966c685c2b869217bd75168bac9243.jpg">
-</div>
+    <div class="images-wrapper-inner">
+        <div class="image-wrapper" *ngFor="let attachment of product.attachments">
+            <img [src]="attachment.attachmentUrl">
+        </div>
 
+    </div>
+    <button pButton pRipple type="button" label="Upload" name="upload" class="p-button-success upload-btn"
+        icon="pi pi-upload" (click)="uploadClick()"></button>
+</div>
 
 <p-dialog header="Add Stock" [(visible)]="displayProductDialog" [style]="{width: '400px'}" [modal]="true">
 
@@ -70,10 +75,16 @@
                 </span>
             </div>
             <div class="add-stock-btn">
-                <button pButton pRipple type="button" label="Add" icon="pi pi-plus" class="p-button-success"
+                <button pButton pRipple type="submit" label="Add" icon="pi pi-plus" class="p-button-success"
                     (click)="addStock()" [disabled]="formProduct.invalid"></button>
             </div>
         </div>
 
     </form>
+</p-dialog>
+
+<p-dialog header="Upload Image" [(visible)]="displayUploadDialog" [style]="{width: '550px'}" [modal]="true">
+
+    <p-fileUpload multiple="true" customUpload="true" (uploadHandler)="uploadAttachemnts($event)"></p-fileUpload>
+
 </p-dialog>

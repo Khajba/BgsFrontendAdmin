@@ -25,6 +25,10 @@
 }
 
 .table-wrapper {
+    height: calc(100vh - 320px);
+    overflow: auto;
+    margin-top: 5px;
+
     .attachment-column,
     .number-column,
     .icon-column {

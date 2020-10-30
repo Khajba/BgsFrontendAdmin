@@ -5,4 +5,6 @@ export interface ProductFilter {
     priceTo?: number;
     stockFrom?: number;
     stockTo?: number;
+    pageNumber: number;
+    pageSize: number;
 }

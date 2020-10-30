@@ -20,6 +20,8 @@ export class ProductDetailsComponent implements OnInit {
 
   displayProductDialog: boolean;
 
+  displayUploadDialog: boolean;
+
   constructor(
     private readonly productService: ProductService,
     private readonly router: Router,
@@ -49,6 +51,19 @@ export class ProductDetailsComponent implements OnInit {
     else {
       this.addProduct();
     }
+  }
+
+  uploadClick() {
+    this.displayUploadDialog = true;
+  }
+
+  uploadAttachemnts(event: any) {
+    this.productService.addProductAttachments(this.product.id, event.files).subscribe(
+      response => {
+        this.getProductAttachments();
+        this.displayUploadDialog = false;
+      }
+    );
   }
 
   addProduct() {
@@ -102,6 +117,14 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProductStock(this.product.id).subscribe(
       response => {
         this.product.stock = response;
+      }
+    )
+  }
+
+  private getProductAttachments() {
+    this.productService.getProductAttachments(this.product.id).subscribe(
+      response => {
+        this.product.attachments = response;
       }
     )
   }

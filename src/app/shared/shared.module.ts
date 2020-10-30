@@ -10,7 +10,10 @@ import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService } from 'primeng/api';
-import { ConfirmDialogModule } from 'primeng/confirmdialog'
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
+import { PaginatorModule } from 'primeng/paginator';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
     exports: [
@@ -23,7 +26,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog'
         TableModule,
         InputTextareaModule,
         DialogModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        VirtualScrollerModule,
+        PaginatorModule,
+        FileUploadModule
     ],
     providers: [
         MessageService,
