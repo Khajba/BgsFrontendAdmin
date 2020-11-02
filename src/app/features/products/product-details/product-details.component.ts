@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SelectItem } from 'primeng/api';
-import { AddStockModel, ProductDetails, ProductListItem } from 'src/app/models/product.models';
+import { ConfirmationService, SelectItem } from 'primeng/api';
+import { AddStockModel, ProductAttachment, ProductDetails, ProductListItem } from 'src/app/models/product.models';
 import { ProductCategory } from 'src/app/models/product-category.model';
 import { ProductService } from '../product.service';
 
@@ -25,7 +25,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private readonly productService: ProductService,
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute) { }
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly confirmatioService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getProductCategories();
@@ -57,6 +58,21 @@ export class ProductDetailsComponent implements OnInit {
     this.displayUploadDialog = true;
   }
 
+  setAsPrimaryClick(attachment: ProductAttachment) {
+    this.setPrimaryAttachment(attachment);
+  }
+
+  removeClick(attachmentId: number) {
+    this.confirmatioService.confirm({
+      header: 'Remove Confirmation',
+      message: 'Do you want to delete this attachment?',
+      accept: () => {
+        this.removeProductAttachment(attachmentId);
+      }
+    })
+
+  }
+
   uploadAttachemnts(event: any) {
     this.productService.addProductAttachments(this.product.id, event.files).subscribe(
       response => {
@@ -64,6 +80,22 @@ export class ProductDetailsComponent implements OnInit {
         this.displayUploadDialog = false;
       }
     );
+  }
+
+  setPrimaryAttachment(attachment: ProductAttachment) {
+    this.productService.setPrimaryAttachment(this.product.id, attachment.id).subscribe(
+      response => {
+        this.product.primaryAttachmentUrl = attachment.attachmentUrl;
+      }
+    )
+  }
+
+  removeProductAttachment(attachmentId: number) {
+    this.productService.removeProductAttachment(attachmentId).subscribe(
+      response => {
+        this.getProductAttachments();
+      }
+    )
   }
 
   addProduct() {

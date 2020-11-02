@@ -59,4 +59,14 @@ export class ProductService {
   getProductAttachments(productId: number) {
     return this.httpService.get<ProductAttachment[]>(`${apiBaseUrl}/getProductAttachments`, { productId })
   }
+
+  setPrimaryAttachment(productId: number, attachmentId: number) {
+    const params = { productId, attachmentId };
+    return this.httpService.post(`${apiBaseUrl}/setPrimaryAttachment`, params);
+  }
+  
+  removeProductAttachment(attachmentId: number) {
+    return this.httpService.post(`${apiBaseUrl}/removeProductAttachment`, { attachmentId });
+  }
+
 }

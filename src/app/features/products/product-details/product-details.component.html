@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 
     <div class="img-wrapper">
-        <img src="https://i.pinimg.com/736x/9d/96/6c/9d966c685c2b869217bd75168bac9243.jpg">
+        <img [src]="product.primaryAttachmentUrl" *ngIf="product.primaryAttachmentUrl!=null">
     </div>
 
     <div class="inputs">
@@ -56,6 +56,13 @@
     <div class="images-wrapper-inner">
         <div class="image-wrapper" *ngFor="let attachment of product.attachments">
             <img [src]="attachment.attachmentUrl">
+            <div class="hover-wrapper">
+                <button pButton pRipple type="button" label="Set As Primary" icon="pi pi-large"
+                    class="p-button-primary primary-btn p-button-sm" (click)="setAsPrimaryClick(attachment)"></button>
+
+                <button pButton pRipple type="button" label="Remove" icon="pi pi-trash"
+                    class="p-button-danger remove-btn p-button-sm" (click)="removeClick(attachment.id)"></button>
+            </div>
         </div>
 
     </div>
@@ -88,3 +95,5 @@
     <p-fileUpload multiple="true" customUpload="true" (uploadHandler)="uploadAttachemnts($event)"></p-fileUpload>
 
 </p-dialog>
+
+<p-confirmDialog icon="pi pi-exclamation-triangle"></p-confirmDialog>
