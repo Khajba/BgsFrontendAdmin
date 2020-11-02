@@ -39,7 +39,7 @@
         <textarea pInputTextarea placeholder="Description" [(ngModel)]="product.description"></textarea>
     </div>
 
-    <div class="stock-wrapper">
+    <div class="stock-wrapper" *ngIf="product.id">
 
         <div class="quantity">{{product.stock}}</div>
         <div>In Stock</div>
@@ -66,8 +66,8 @@
         </div>
 
     </div>
-    <button pButton pRipple type="button" label="Upload" name="upload" class="p-button-success upload-btn"
-        icon="pi pi-upload" (click)="uploadClick()"></button>
+    <button *ngIf="product.id" pButton pRipple type="button" label="Upload" name="upload"
+        class="p-button-success upload-btn" icon="pi pi-upload" (click)="uploadClick()"></button>
 </div>
 
 <p-dialog header="Add Stock" [(visible)]="displayProductDialog" [style]="{width: '400px'}" [modal]="true">
@@ -90,9 +90,9 @@
     </form>
 </p-dialog>
 
-<p-dialog header="Upload Image" [(visible)]="displayUploadDialog" [style]="{width: '550px'}" [modal]="true">
+<p-dialog header="Upload Image"  [(visible)]="displayUploadDialog"  [style]="{width: '550px'}" [modal]="true">
 
-    <p-fileUpload multiple="true" customUpload="true" (uploadHandler)="uploadAttachemnts($event)"></p-fileUpload>
+    <p-fileUpload *ngIf="displayUploadDialog" multiple="true" customUpload="true" (uploadHandler)="uploadAttachemnts($event)"></p-fileUpload>
 
 </p-dialog>
 

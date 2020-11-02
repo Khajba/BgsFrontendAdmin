@@ -61,7 +61,7 @@
         routerLink="/products/0"></button>
 </div>
 
-<div class="table-wrapper">
+<div class="table-wrapper" >
 
     <p-table [value]="products">
         <ng-template pTemplate="header">
@@ -74,9 +74,9 @@
                 <th class="icon-column"></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-product >
             <tr>
-                <td></td>
+                <td> <img class="primary-attachment" [src]="product.primaryAttachmentUrl" *ngIf="product.primaryAttachmentUrl" > </td>
                 <td>{{product.category}}</td>
                 <td>{{product.name}}</td>
                 <td>{{product.price | currency:'USD'}}</td>

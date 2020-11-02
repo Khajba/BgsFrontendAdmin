@@ -76,6 +76,7 @@ export class ProductDetailsComponent implements OnInit {
   uploadAttachemnts(event: any) {
     this.productService.addProductAttachments(this.product.id, event.files).subscribe(
       response => {
+        this.getProductById(this.product.id);
         this.getProductAttachments();
         this.displayUploadDialog = false;
       }
