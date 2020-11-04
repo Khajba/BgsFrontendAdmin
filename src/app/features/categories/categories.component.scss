@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    height: calc(100vh - 65px);
+    padding: 10px;
+
+    .wrapper {
+        position: relative;
+        flex: 1;
+
+        &:not(:last-child) {
+            margin-right: 15px;
+        }
+
+        .inner-wrapper {
+            overflow: auto;
+            border: 1px solid black;
+            position: absolute;
+            left: 0;
+            top: 25px;
+            width: 100%;
+            height: calc(100% - 25px);
+
+            .list-item {
+                font-size: 20px;
+                display: flex;
+                padding: 5px 15px;
+
+                .delete-btn {
+                    flex: 1;
+                    text-align: right;
+                }
+            }
+        }
+        .title-wrapper {
+            text-align: center;
+            font-size: 20px;
+            line-height: 25px;
+        }
+
+        .add-button {
+            position: absolute;
+            right: 3px;
+            bottom: 3px;
+        }
+    }
+}
+
+.dialog-wrapper {
+    .add {
+        text-align: center;
+        margin-top: 20px;
+    }
+}

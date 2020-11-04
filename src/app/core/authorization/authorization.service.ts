@@ -54,7 +54,7 @@ export class AuthorizationService {
   }
 
   refreshToken() {
-    return this.httpService.get<JsonWebToken>(`${this.apiBaseUri}/refreshToken`)
+    return this.httpService.get<JsonWebToken>(`${this.apiBaseUri}/refreshToken`, null, null, true)
       .pipe(map(response => {
         const authUserCookie = this.cookieService.get(Constants.KEY_AUTH_USER);
         const authUserData = <AuthUserModel>JSON.parse(authUserCookie);

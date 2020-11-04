@@ -12,15 +12,15 @@ export class HttpService {
         private readonly httpClient: HttpClient,
         private readonly messageService: MessageService) { }
 
-    get<TData>(url: string, queryParams?: {}, showDefaultMessage?: boolean) {
+    get<TData>(url: string, queryParams?: {}, showDefaultMessage?: boolean, skipJwtInterceptor: boolean = false) {
         return this.httpClient
-            .get<TData>(`${url}?${this.getQueryParams(queryParams).toString()}`)
+            .get<TData>(`${url}?${this.getQueryParams(queryParams).toString()}`, { headers: { skipJwtInterceptor: skipJwtInterceptor.toString() } })
             .pipe(map(response => this.handleResponse(response, showDefaultMessage)));
     }
 
-    post<TData>(url: string, body: any, showDefaultMessage?: boolean) {
+    post<TData>(url: string, body: any, showDefaultMessage?: boolean, skipJwtInterceptor: boolean = false) {
         return this.httpClient
-            .post<TData>(url, body)
+            .post<TData>(url, body, { headers: { skipJwtInterceptor: skipJwtInterceptor.toString() } })
             .pipe(map(response => this.handleResponse(response, showDefaultMessage)));
     }
 

@@ -43,13 +43,16 @@ export class AppConfigurationService {
             'config.prod.json' :
             'config.dev.json';
 
-        return this.httpClient.get(`./assets/config/${configFileName}`, { responseType: 'text' })
-            .pipe(
-                map(data => {
-                    this.appConfiguration = JSON.parse(data);
-                }, () => {
-                    this.appConfiguration = {};
-                })).toPromise();
+        return this.httpClient.get(`./assets/config/${configFileName}`,
+            { responseType: 'text', headers: { skipJwtInterceptor: 'true' } }
+        ).pipe(
+            map(data => {
+                this.appConfiguration = JSON.parse(data);
+            }, () => {
+                this.appConfiguration = {};
+            })
+        ).toPromise();
+
     }
 
     private async initDictionary() {
@@ -59,29 +62,29 @@ export class AppConfigurationService {
             this.localizationService.currentLanguage$.next(JSON.parse(currentLanguage));
         }
 
-        return this.httpClient.get(`./assets/dictionary/${this.localizationService.currentLanguage.tag}.json`, { responseType: 'text' })
-            .pipe(
-                map(data => {
-                    this.dictionary = JSON.parse(data);
-                }, () => {
-                    this.dictionary = {};
-                })).toPromise();
+        return this.httpClient.get(`./assets/dictionary/${this.localizationService.currentLanguage.tag}.json`,
+            { responseType: 'text', headers: { skipJwtInterceptor: 'true' } }
+        ).pipe(map(
+            data => {
+                this.dictionary = JSON.parse(data);
+            },
+            () => {
+                this.dictionary = {};
+            })
+        ).toPromise();
     }
 
     private async initErrorCodes() {
-        const currentLanguage = localStorage.getItem(Constants.KEY_LANGUAGE);
-
-        if (currentLanguage) {
-            this.localizationService.currentLanguage$.next(JSON.parse(currentLanguage));
-        }
-
-        return this.httpClient.get(`./assets/error-codes/${this.localizationService.currentLanguage.tag}.json`, { responseType: 'text' })
-            .pipe(
-                map(data => {
-                    this.errorCodes = JSON.parse(data);
-                }, () => {
-                    this.errorCodes = {};
-                })).toPromise();
+        return this.httpClient.get(`./assets/error-codes/${this.localizationService.currentLanguage.tag}.json`,
+            { responseType: 'text', headers: { skipJwtInterceptor: 'true' } }
+        ).pipe(map(
+            data => {
+                this.errorCodes = JSON.parse(data);
+            },
+            () => {
+                this.errorCodes = {};
+            })
+        ).toPromise();
     }
 }
 

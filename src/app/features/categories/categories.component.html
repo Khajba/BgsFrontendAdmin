@@ -1,0 +1,102 @@
+<div class="container">
+
+    <div class="wrapper">
+        <div class="title-wrapper">Artists</div>
+        <div class="inner-wrapper">
+            <div class="list-item" *ngFor="let artist of artists">
+                {{artist.name}}
+                <div class="delete-btn">
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                        (click)="deleteArtistClick(artist.id)"></button>
+                </div>
+            </div>
+        </div>
+        <button pButton pRipple type="button" label="Add" icon="pi pi-plus"
+            class="p-button-success p-button-sm add-button" (click)="artistDialogClick()"></button>
+    </div>
+
+
+    <div class="wrapper">
+        <div class="title-wrapper">Designers</div>
+        <div class="inner-wrapper">
+            <div class="list-item" *ngFor="let designer of designers">
+                {{designer.name}}
+                <div class="delete-btn">
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                        (click)="deleteDesignerClick(designer.id)"></button>
+                </div>
+            </div>
+        </div>
+        <button pButton pRipple type="button" label="Add" icon="pi pi-plus"
+            class="p-button-success p-button-sm add-button" (click)="DesignerDialogClick()"></button>
+    </div>
+
+    <div class="wrapper">
+        <div class="title-wrapper">Mechanics</div>
+        <div class="inner-wrapper">
+            <div class="list-item" *ngFor="let mechanic of mechanics">
+                {{mechanic.name}}
+                <div class="delete-btn">
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                        (click)="deleteMechanicClick(mechanic.id)"></button>
+                </div>
+            </div>
+        </div>
+        <button pButton pRipple type="button" label="Add" icon="pi pi-plus"
+            class="p-button-success p-button-sm add-button" (click)="MechanicDialogClick()"></button>
+    </div>
+</div>
+
+<p-dialog header="Add Artist" [(visible)]="displayArtistDialog" [style]="{width: '300px'}" [modal]="true">
+    <form #formArtist="ngForm">
+        <div class="dialog-wrapper">
+            <div>
+                <span class="p-float-label">
+                    <input name="artist" id="artist" type="text" pInputText [(ngModel)]="artist.name" required>
+                    <label for="Artist">Artist</label>
+                </span>
+            </div>
+            <div class="add">
+                <button pButton pRipple type="submit" label="Add" icon="pi pi-plus" class="p-button-success"
+                    (click)="addArtistClick()" [disabled]="formArtist.invalid"></button>
+            </div>
+        </div>
+
+    </form>
+</p-dialog>
+
+<p-dialog header="Add Designer" [(visible)]="displayDesignerDialog" [style]="{width: '300px'}" [modal]="true">
+    <form #formDesigner="ngForm">
+        <div class="dialog-wrapper">
+            <div>
+                <span class="p-float-label">
+                    <input name="designer" id="designer" type="text" pInputText [(ngModel)]="designer.name" required>
+                    <label for="designer">Designer</label>
+                </span>
+            </div>
+            <div class="add">
+                <button pButton pRipple type="submit" label="Add" icon="pi pi-plus" class="p-button-success"
+                    (click)="addDesignerClick()" [disabled]="formDesigner.invalid"></button>
+            </div>
+        </div>
+
+    </form>
+</p-dialog>
+
+<p-dialog header="Add Mechanic" [(visible)]="displayMechanicDialog" [style]="{width: '300px'}" [modal]="true">
+    <form #formMechanic="ngForm">
+        <div class="dialog-wrapper">
+            <div>
+                <span class="p-float-label">
+                    <input name="mechanic" id="mechanic" type="text" pInputText [(ngModel)]="mechanic.name" required>
+                    <label for="mechanic">Mechanic</label>
+                </span>
+            </div>
+            <div class="add">
+                <button pButton pRipple type="submit" label="Add" icon="pi pi-plus" class="p-button-success"
+                    (click)="addMechanicClick()" [disabled]="formMechanic.invalid"></button>
+            </div>
+        </div>
+
+    </form>
+</p-dialog>

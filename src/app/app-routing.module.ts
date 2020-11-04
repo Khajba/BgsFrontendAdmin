@@ -17,6 +17,11 @@ const routes: Routes = [
     path: 'products',
     loadChildren: async () => (await import('./features/products/products.module')).ProductsModule,
     canActivate: [AuthorizationGuard]
+  },
+  {
+    path: 'categories',
+    loadChildren: async () => (await import('./features/categories/categories.module')).CategoriesModule,
+    canActivate: [AuthorizationGuard]
   }
 ];
 
