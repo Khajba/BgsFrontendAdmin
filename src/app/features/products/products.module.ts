@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './products.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductService } from './product.service';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { BgsSharedModule } from 'src/app/shared/bgs-shared.module';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
@@ -15,7 +15,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    SharedModule,
+    BgsSharedModule,
     FormsModule
   ],
   providers: [

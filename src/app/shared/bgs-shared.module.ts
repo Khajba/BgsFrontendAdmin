@@ -14,8 +14,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { PaginatorModule } from 'primeng/paginator';
 import { FileUploadModule } from 'primeng/fileupload';
+import { LocalizePipe } from '../core/localization/localize.pipe';
+import { SecureUrlPipe } from '../core/secure-url.pipe';
 
 @NgModule({
+    declarations: [
+        LocalizePipe,
+        SecureUrlPipe
+    ],
     exports: [
         InputTextModule,
         ButtonModule,
@@ -29,11 +35,13 @@ import { FileUploadModule } from 'primeng/fileupload';
         ConfirmDialogModule,
         VirtualScrollerModule,
         PaginatorModule,
-        FileUploadModule
+        FileUploadModule,
+        LocalizePipe,
+        SecureUrlPipe
     ],
     providers: [
         MessageService,
         ConfirmationService
     ]
 })
-export class SharedModule { }
+export class BgsSharedModule { }

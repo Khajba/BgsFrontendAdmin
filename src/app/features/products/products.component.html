@@ -3,8 +3,7 @@
     <div class="filter">
 
         <div class="filter-wrapper">
-            <p-dropdown name="category" [options]="categories" [(ngModel)]="filter.categoryId"
-                placeholder="Select category">
+            <p-dropdown name="category" [options]="categories" [(ngModel)]="filter.categoryId" placeholder="Select category">
             </p-dropdown>
         </div>
 
@@ -44,12 +43,10 @@
         </div>
 
         <div class="btn-wrapper">
-            <button pButton pRipple type="submit" label="Search" icon="pi pi-search" name="search"
-                (click)="searchClick()"></button>
+            <button pButton pRipple type="submit" label="Search" icon="pi pi-search" name="search" (click)="searchClick()"></button>
         </div>
         <div class="btn-wrapper">
-            <button pButton pRipple type="button" label="Clear" icon="pi pi-times" (click)="clearClick()"
-                name="clear"></button>
+            <button pButton pRipple type="button" label="Clear" icon="pi pi-times" (click)="clearClick()" name="clear"></button>
         </div>
 
     </div>
@@ -57,11 +54,10 @@
 </form>
 
 <div class="add-btn">
-    <button pButton pRipple type="button" label="Add" icon="pi pi-plus" class="p-button-success"
-        routerLink="/products/0"></button>
+    <button pButton pRipple type="button" label="Add" icon="pi pi-plus" class="p-button-success" routerLink="/products/0"></button>
 </div>
 
-<div class="table-wrapper" >
+<div class="table-wrapper">
 
     <p-table [value]="products">
         <ng-template pTemplate="header">
@@ -74,18 +70,16 @@
                 <th class="icon-column"></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product >
+        <ng-template pTemplate="body" let-product>
             <tr>
-                <td> <img class="primary-attachment" [src]="product.primaryAttachmentUrl" *ngIf="product.primaryAttachmentUrl" > </td>
+                <td> <img class="primary-attachment" [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl"> </td>
                 <td>{{product.category}}</td>
                 <td>{{product.name}}</td>
                 <td>{{product.price | currency:'USD'}}</td>
                 <td>{{product.stock}}</td>
                 <td class="icon-wrapper">
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
-                        [routerLink]="['/products', product.id]"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                        (click)="deleteClick(product.id)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" [routerLink]="['/products', product.id]"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteClick(product.id)"></button>
                 </td>
             </tr>
 
@@ -94,7 +88,6 @@
 
 </div>
 
-<p-paginator [rows]="paginator.pageSize" [totalRecords]="paginator.totalRecords"
-    [rowsPerPageOptions]="paginator.options" (onPageChange)="onPaginate($event)"></p-paginator>
+<p-paginator [rows]="paginator.pageSize" [totalRecords]="paginator.totalRecords" [rowsPerPageOptions]="paginator.options" (onPageChange)="onPaginate($event)"></p-paginator>
 
 <p-confirmDialog icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AuthenticateUserModel } from 'src/app/models/authenticate-user.model';
+import { AppConfigurationService } from '../app-configuration/app-configuration.service';
 import { Constants } from '../Constants';
 import { HttpService } from '../http/http.service';
 import { AuthUserModel, JsonWebToken } from './authentication-response.model';
 
-const apiBaseUrl = "http://localhost:64764/api/account";
-
 @Injectable()
 export class AuthorizationService {
+
+  private get apiBaseUri() { return `${this.appConfigService.getAppConfig('apiBaseUri')}/api/account`; }
 
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.cookieService.get(Constants.KEY_AUTH_USER) !== "");
 
@@ -30,10 +31,11 @@ export class AuthorizationService {
   constructor(
     private readonly httpService: HttpService,
     private readonly cookieService: CookieService,
-    private readonly router: Router) { }
+    private readonly router: Router,
+    private readonly appConfigService: AppConfigurationService) { }
 
   login(user: AuthenticateUserModel) {
-    return this.httpService.get<AuthUserModel>(`${apiBaseUrl}/login`, user)
+    return this.httpService.get<AuthUserModel>(`${this.apiBaseUri}/login`, user)
       .pipe(map(response => {
         response.jwt.expiresOnClient = new Date((new Date()).getTime() + response.jwt.expiresInMinutes * 30000).getTime();
         response.jwt.expiresOnServer = new Date((new Date()).getTime() + response.jwt.expiresInMinutes * 60000).getTime();
@@ -52,7 +54,7 @@ export class AuthorizationService {
   }
 
   refreshToken() {
-    return this.httpService.get<JsonWebToken>(`${apiBaseUrl}/refreshToken`)
+    return this.httpService.get<JsonWebToken>(`${this.apiBaseUri}/refreshToken`)
       .pipe(map(response => {
         const authUserCookie = this.cookieService.get(Constants.KEY_AUTH_USER);
         const authUserData = <AuthUserModel>JSON.parse(authUserCookie);

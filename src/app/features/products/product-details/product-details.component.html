@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 
     <div class="img-wrapper">
-        <img [src]="product.primaryAttachmentUrl" *ngIf="product.primaryAttachmentUrl!=null">
+        <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl!=null">
     </div>
 
     <div class="inputs">
@@ -14,8 +14,7 @@
         </div>
 
         <div class="input-wrapper">
-            <p-dropdown name="category" [options]="categories" [(ngModel)]="product.categoryId"
-                placeholder="Select category">
+            <p-dropdown name="category" [options]="categories" [(ngModel)]="product.categoryId" placeholder="Select category">
             </p-dropdown>
         </div>
 
@@ -45,8 +44,7 @@
         <div>In Stock</div>
 
         <div class="stock">
-            <button pButton pRipple type="button" label="Add Stock" icon="pi pi-plus" class="p-button-success"
-                (click)="addStockClick()"></button>
+            <button pButton pRipple type="button" label="Add Stock" icon="pi pi-plus" class="p-button-success" (click)="addStockClick()"></button>
         </div>
     </div>
 
@@ -55,19 +53,16 @@
 <div class="images-wrapper">
     <div class="images-wrapper-inner">
         <div class="image-wrapper" *ngFor="let attachment of product.attachments">
-            <img [src]="attachment.attachmentUrl">
+            <img [src]="attachment.attachmentUrl | secure | async">
             <div class="hover-wrapper">
-                <button pButton pRipple type="button" label="Set As Primary" icon="pi pi-large"
-                    class="p-button-primary primary-btn p-button-sm" (click)="setAsPrimaryClick(attachment)"></button>
+                <button pButton pRipple type="button" label="Set As Primary" icon="pi pi-large" class="p-button-primary primary-btn p-button-sm" (click)="setAsPrimaryClick(attachment)"></button>
 
-                <button pButton pRipple type="button" label="Remove" icon="pi pi-trash"
-                    class="p-button-danger remove-btn p-button-sm" (click)="removeClick(attachment.id)"></button>
+                <button pButton pRipple type="button" label="Remove" icon="pi pi-trash" class="p-button-danger remove-btn p-button-sm" (click)="removeClick(attachment.id)"></button>
             </div>
         </div>
 
     </div>
-    <button *ngIf="product.id" pButton pRipple type="button" label="Upload" name="upload"
-        class="p-button-success upload-btn" icon="pi pi-upload" (click)="uploadClick()"></button>
+    <button *ngIf="product.id" pButton pRipple type="button" label="Upload" name="upload" class="p-button-success upload-btn" icon="pi pi-upload" (click)="uploadClick()"></button>
 </div>
 
 <p-dialog header="Add Stock" [(visible)]="displayProductDialog" [style]="{width: '400px'}" [modal]="true">
@@ -82,15 +77,14 @@
                 </span>
             </div>
             <div class="add-stock-btn">
-                <button pButton pRipple type="submit" label="Add" icon="pi pi-plus" class="p-button-success"
-                    (click)="addStock()" [disabled]="formProduct.invalid"></button>
+                <button pButton pRipple type="submit" label="Add" icon="pi pi-plus" class="p-button-success" (click)="addStock()" [disabled]="formProduct.invalid"></button>
             </div>
         </div>
 
     </form>
 </p-dialog>
 
-<p-dialog header="Upload Image"  [(visible)]="displayUploadDialog"  [style]="{width: '550px'}" [modal]="true">
+<p-dialog header="Upload Image" [(visible)]="displayUploadDialog" [style]="{width: '550px'}" [modal]="true">
 
     <p-fileUpload *ngIf="displayUploadDialog" multiple="true" customUpload="true" (uploadHandler)="uploadAttachemnts($event)"></p-fileUpload>
 
