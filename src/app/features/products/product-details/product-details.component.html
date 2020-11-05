@@ -4,39 +4,60 @@
         <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl!=null">
     </div>
 
-    <div class="inputs">
+    <form class="form-product" #inputForm="ngForm">
+        <div class="inputs">
 
-        <div class="input-wrapper">
-            <span class="p-float-label">
-                <input name="name" id="name" type="text" pInputText [(ngModel)]="product.name">
-                <label for="name">Name</label>
-            </span>
-        </div>
-
-        <div class="input-wrapper">
-            <p-dropdown name="category" [options]="categories" [(ngModel)]="product.categoryId" placeholder="Select category">
-            </p-dropdown>
-        </div>
-
-        <div class="input-wrapper">
-            <span class="p-float-label">
-                <input name="price" id="price" type="number" pInputText [(ngModel)]="product.price">
-                <label for="price">Price</label>
-            </span>
-        </div>
-
-        <div>
-            <div class="btn-wrapper">
-                <button pButton pRipple type="button" label="Save" name="save" (click)="saveClick()"></button>
+            <div class="input-wrapper">
+                <span class="p-float-label">
+                    <input name="name" id="name" type="text" pInputText [(ngModel)]="product.name" required>
+                    <label for="name">Name</label>
+                </span>
             </div>
 
+            <div class="input-wrapper">
+                <p-dropdown name="category" [options]="categories" [(ngModel)]="product.categoryId"
+                    placeholder="Select category" required>
+                </p-dropdown>
+            </div>
+
+            <div class="input-wrapper">
+                <span class="p-float-label">
+                    <input name="price" id="price" type="number" pInputText [(ngModel)]="product.price" required>
+                    <label for="price">Price</label>
+                </span>
+            </div>
+
+            <div class="input-wrapper">
+                <p-dropdown name="artist" [options]="artists" [(ngModel)]="product.artistId" placeholder="Select artist"
+                    required>
+                </p-dropdown>
+            </div>
+
+            <div class="input-wrapper">
+                <p-dropdown name="designer" [options]="designers" [(ngModel)]="product.designerId"
+                    placeholder="Select designer" required>
+                </p-dropdown>
+            </div>
+
+            <div class="input-wrapper">
+                <p-dropdown name="mechanics" [options]="mechanics" [(ngModel)]="product.mechanicsId"
+                    placeholder="Select mechanic" required>
+                </p-dropdown>
+            </div>
+
+            <div>
+                <div class="btn-wrapper">
+                    <button pButton pRipple type="button" label="Save" name="save" (click)="saveClick()"
+                        [disabled]="inputForm.invalid"></button>
+                </div>
+            </div>
         </div>
 
-    </div>
-
-    <div class="text-area-wrapper">
-        <textarea pInputTextarea placeholder="Description" [(ngModel)]="product.description"></textarea>
-    </div>
+        <div class="text-area-wrapper">
+            <textarea name="description" pInputTextarea placeholder="Description" [(ngModel)]="product.description"
+                required></textarea>
+        </div>
+    </form>
 
     <div class="stock-wrapper" *ngIf="product.id">
 
@@ -44,7 +65,8 @@
         <div>In Stock</div>
 
         <div class="stock">
-            <button pButton pRipple type="button" label="Add Stock" icon="pi pi-plus" class="p-button-success" (click)="addStockClick()"></button>
+            <button pButton pRipple type="button" label="Add Stock" icon="pi pi-plus" class="p-button-success"
+                (click)="addStockClick()"></button>
         </div>
     </div>
 
@@ -55,14 +77,17 @@
         <div class="image-wrapper" *ngFor="let attachment of product.attachments">
             <img [src]="attachment.attachmentUrl | secure | async">
             <div class="hover-wrapper">
-                <button pButton pRipple type="button" label="Set As Primary" icon="pi pi-large" class="p-button-primary primary-btn p-button-sm" (click)="setAsPrimaryClick(attachment)"></button>
+                <button pButton pRipple type="button" label="Set As Primary" icon="pi pi-large"
+                    class="p-button-primary primary-btn p-button-sm" (click)="setAsPrimaryClick(attachment)"></button>
 
-                <button pButton pRipple type="button" label="Remove" icon="pi pi-trash" class="p-button-danger remove-btn p-button-sm" (click)="removeClick(attachment.id)"></button>
+                <button pButton pRipple type="button" label="Remove" icon="pi pi-trash"
+                    class="p-button-danger remove-btn p-button-sm" (click)="removeClick(attachment.id)"></button>
             </div>
         </div>
 
     </div>
-    <button *ngIf="product.id" pButton pRipple type="button" label="Upload" name="upload" class="p-button-success upload-btn" icon="pi pi-upload" (click)="uploadClick()"></button>
+    <button *ngIf="product.id" pButton pRipple type="button" label="Upload" name="upload"
+        class="p-button-success upload-btn" icon="pi pi-upload" (click)="uploadClick()"></button>
 </div>
 
 <p-dialog header="Add Stock" [(visible)]="displayProductDialog" [style]="{width: '400px'}" [modal]="true">
@@ -77,7 +102,8 @@
                 </span>
             </div>
             <div class="add-stock-btn">
-                <button pButton pRipple type="submit" label="Add" icon="pi pi-plus" class="p-button-success" (click)="addStock()" [disabled]="formProduct.invalid"></button>
+                <button pButton pRipple type="submit" label="Add" icon="pi pi-plus" class="p-button-success"
+                    (click)="addStock()" [disabled]="formProduct.invalid"></button>
             </div>
         </div>
 
@@ -86,7 +112,8 @@
 
 <p-dialog header="Upload Image" [(visible)]="displayUploadDialog" [style]="{width: '550px'}" [modal]="true">
 
-    <p-fileUpload *ngIf="displayUploadDialog" multiple="true" customUpload="true" (uploadHandler)="uploadAttachemnts($event)"></p-fileUpload>
+    <p-fileUpload *ngIf="displayUploadDialog" multiple="true" customUpload="true"
+        (uploadHandler)="uploadAttachemnts($event)"></p-fileUpload>
 
 </p-dialog>
 

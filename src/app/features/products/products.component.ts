@@ -5,6 +5,8 @@ import { ProductCategory } from 'src/app/models/product-category.model';
 import { ProductFilter } from 'src/app/models/product-filter';
 import { ProductService } from './product.service';
 import { PaginatorModel } from 'src/app/models/paginator.model';
+import { CategoryService } from '../categories/category.service';
+import { Artist, Designer, Mechanic } from 'src/app/models/categories.model';
 
 @Component({
   selector: 'app-products',
@@ -21,14 +23,23 @@ export class ProductsComponent implements OnInit {
   };
   products: ProductListItem[] = [];
 
+  artists: SelectItem[] = [];
+  designers: SelectItem[] = [];
+  mechanics: SelectItem[] = [];
+
   constructor(
     private readonly productService: ProductService,
-    private readonly confirmationService: ConfirmationService) { }
+    private readonly confirmationService: ConfirmationService,
+    private readonly categoryService: CategoryService) { }
 
   ngOnInit() {
     this.getProductCategories();
     this.getProducts();
     this.getProductCount();
+
+    this.getArtists();
+    this.getDesigners();
+    this.getMechanics();
   }
 
   clearClick() {
@@ -47,7 +58,7 @@ export class ProductsComponent implements OnInit {
         this.deleteProduct(id);
       }
     })
-    
+
   }
 
   searchClick() {
@@ -83,6 +94,45 @@ export class ProductsComponent implements OnInit {
       response => {
         this.getProducts();
       });
+  }
+
+  private getArtists() {
+    this.categoryService.getArtists().subscribe(
+      respnse => {
+        this.artists = respnse.map(a => {
+          return <SelectItem>{
+            value: a.id,
+            label: a.name
+          }
+        })
+      }
+    )
+  }
+
+  private getDesigners() {
+    this.categoryService.getDesigners().subscribe(
+      response => {
+        this.designers = response.map(d => {
+          return <SelectItem>{
+            value: d.id,
+            label: d.name
+          }
+        })
+      }
+    )
+  }
+
+  private getMechanics() {
+    this.categoryService.getMechanics().subscribe(
+      response => {
+        this.mechanics = response.map(m => {
+          return <SelectItem>{
+            value: m.id,
+            label: m.name
+          }
+        })
+      }
+    )
   }
 
   private getProductCategories() {

@@ -6,6 +6,7 @@ import { ProductService } from './product.service';
 import { BgsSharedModule } from 'src/app/shared/bgs-shared.module';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CategoryService } from '../categories/category.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     FormsModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    CategoryService
   ]
 })
 export class ProductsModule { }

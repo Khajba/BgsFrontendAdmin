@@ -13,38 +13,38 @@ export class CategoryService {
         private readonly appConfigService: AppConfigurationService) { }
 
     addArtist(artist: Artist) {
-        return this.httpService.post<Artist>(`${this.apiBaseUri}/addArtist`, artist)
-    }
-
-    addDesigner(designer: Designer) {
-        return this.httpService.post<Artist>(`${this.apiBaseUri}/addDesigner`, designer)
-    }
-
-    addMechanic(mechanic: Mechanic) {
-        return this.httpService.post<Artist>(`${this.apiBaseUri}/addMechanic`, mechanic)
+        return this.httpService.post<Artist>(`${this.apiBaseUri}/addArtist`, artist, true);
     }
 
     getArtists() {
-        return this.httpService.get<Artist[]>(`${this.apiBaseUri}/getArtists`)
+        return this.httpService.get<Artist[]>(`${this.apiBaseUri}/getArtists`);
+    }
+
+    deleteArtist(id: number) {
+        return this.httpService.post<Artist>(`${this.apiBaseUri}/deleteArtist`, { id }, true);
+    }
+
+    addDesigner(designer: Designer) {
+        return this.httpService.post<Artist>(`${this.apiBaseUri}/addDesigner`, designer, true)
     }
 
     getDesigners() {
         return this.httpService.get<Designer[]>(`${this.apiBaseUri}/getDesigners`)
     }
 
-    getMechanics() {
-        return this.httpService.get<Mechanic[]>(`${this.apiBaseUri}/getMechaincs`)
-    }
-
-    deleteArtist(id: number) {
-        return this.httpService.post<Artist>(`${this.apiBaseUri}/deleteArtist`, { id })
-    }
-
     deleteDesigner(id: number) {
-        return this.httpService.post<Designer>(`${this.apiBaseUri}/deleteDesigner`, { id })
+        return this.httpService.post<Designer>(`${this.apiBaseUri}/deleteDesigner`, { id }, true)
+    }
+
+    addMechanic(mechanic: Mechanic) {
+        return this.httpService.post<Artist>(`${this.apiBaseUri}/addMechanics`, mechanic, true)
+    }
+
+    getMechanics() {
+        return this.httpService.get<Mechanic[]>(`${this.apiBaseUri}/getMechanics`)
     }
 
     deleteMechanic(id: number) {
-        return this.httpService.post<Mechanic>(`${this.apiBaseUri}/deleteMechanic`, { id })
+        return this.httpService.post<Mechanic>(`${this.apiBaseUri}/deleteMechanics`, { id }, true)
     }
 }

@@ -1,3 +1,4 @@
+
 export interface ProductListItem {
     id?: number;
     primaryAttachmentUrl?: string;
@@ -5,12 +6,18 @@ export interface ProductListItem {
     name?: string;
     price?: number;
     stock?: number;
+    artist?: string;
+    desigener?: string;
+    mechanics?: string;
 }
 
 export interface ProductDetails {
     id?: number;
     primaryAttachmentUrl?: string;
     categoryId?: number;
+    artistId? : number;
+    designerId? : number;
+    mechanicsId? : number;
     name?: string;
     price?: number;
     stock?: number;

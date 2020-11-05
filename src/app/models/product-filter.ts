@@ -7,4 +7,7 @@ export interface ProductFilter {
     stockTo?: number;
     pageNumber: number;
     pageSize: number;
+    artistId?:number;
+    designerId?:number;
+    mechanicsId?:number;
 }
