@@ -47,6 +47,7 @@ export class ProductsComponent implements OnInit {
         this.deleteProduct(id);
       }
     })
+    
   }
 
   searchClick() {

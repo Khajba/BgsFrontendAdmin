@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { Artist, Designer, Mechanic } from 'src/app/models/categories.model';
 import { CategoryService } from './category.service';
 
@@ -22,7 +23,9 @@ export class CategoriesComponent implements OnInit {
   displayMechanicDialog: boolean;
 
 
-  constructor(private readonly categoriesService: CategoryService) { }
+  constructor(
+    private readonly categoriesService: CategoryService,
+    private readonly confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getArtists();
@@ -45,17 +48,37 @@ export class CategoriesComponent implements OnInit {
     this.displayMechanicDialog = true;
   }
 
-  deleteArtistClick(id:number) {
-    this.deleteArtist(id);
+  deleteArtistClick(id: number) {
+    this.confirmationService.confirm({
+      header: 'Delete Confirmation',
+      message: 'Do you want to delete this record?',
+      accept: () => {
+        this.deleteArtist(id);
+      }
+    })
+
   }
 
-  deleteDesignerClick(id:number) {
-    this.deleteDesigner(id);
-
+  deleteDesignerClick(id: number) {
+    this.confirmationService.confirm({
+      header: 'Delete Confirmation',
+      message: 'Do you want to delete this record?',
+      accept: () => {
+        this.deleteDesigner(id);
+      }
+    })
   }
 
-  deleteMechanicClick(id:number) {
-    this.deleteMechanic(id);
+  deleteMechanicClick(id: number) {
+    this.confirmationService.confirm({
+      header: 'Delete Confirmation',
+      message: 'Do you want to delete this record?',
+      accept: () => {
+        this.deleteMechanic(id);
+      }
+    })
+
+
   }
 
   addArtistClick() {
@@ -121,15 +144,15 @@ export class CategoriesComponent implements OnInit {
     )
   }
 
-  deleteArtist(id:number) {
+  deleteArtist(id: number) {
     this.categoriesService.deleteArtist(id).subscribe(
       response => {
-        this.getMechanics();
+        this.getArtists();
       }
     )
   }
 
-  deleteDesigner(id : number) {
+  deleteDesigner(id: number) {
     this.categoriesService.deleteDesigner(id).subscribe(
       response => {
         this.getDesigners()
@@ -137,7 +160,7 @@ export class CategoriesComponent implements OnInit {
     )
   }
 
-  deleteMechanic(id:number) {
+  deleteMechanic(id: number) {
     this.categoriesService.deleteMechanic(id).subscribe(
       response => {
         this.getMechanics();

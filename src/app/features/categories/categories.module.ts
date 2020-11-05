@@ -4,6 +4,7 @@ import { CategoriesComponent } from './categories.component';
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { BgsSharedModule } from 'src/app/shared/bgs-shared.module';
 import { CategoryService } from './category.service';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [CategoriesComponent],
