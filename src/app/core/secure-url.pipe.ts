@@ -13,7 +13,7 @@ export class SecureUrlPipe implements PipeTransform {
 
     transform(url: string): Observable<SafeUrl> {
         return this.http
-            .get(url, { responseType: 'blob' })
+            .get(url, { responseType: 'blob', headers: { skipJwtInterceptor: 'true' } },)
             .pipe(map(val => this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(val))));
     }
 }
