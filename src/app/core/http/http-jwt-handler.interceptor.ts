@@ -20,7 +20,7 @@ export class HttpJwtHandlerInterceptor implements HttpInterceptor {
         if (authUserCookie) {
             const authUserData = <AuthUserModel>JSON.parse(authUserCookie);
 
-            if (new Date(authUserData.jwt.expiresOnClient) <= new Date() && !request.headers.get("skipJwtInterceptor")) {
+            if (new Date(authUserData.jwt.expiresOnClient) <= new Date() && request.headers.get("skipJwtInterceptor") != 'true') {
                 return this.authorizationService.refreshToken().pipe(mergeMap(
                     accessToken => {
                         request = request.clone({
